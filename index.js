@@ -17,15 +17,19 @@ const db = mysql.createPool({
   database: DB_NAME,
 });
 
+
 // get all stats in database, locations, quantities locally and globally
 // GET 
 // select product based on name OR id
 // view locations and update quantities
 
 app.get('/:coreId', (req, res) => {
-  const query = `SELECT Core_Number, Internal_Title, Location, Quantity FROM cores JOIN locations ON cores.Core_Number = locations.Product_Code WHERE Core_Number LIKE ('%${req.params.coreId}') OR Internal_Title LIKE('${req.params.coreId}%')`
+
+  const query = `SELECT Core_Number, Internal_Title, Location, Quantity FROM inventory JOIN locations ON inventory.Core_Number = locations.Product_Code WHERE Core_Number LIKE ('%${req.params.coreId}') OR Internal_Title LIKE('${req.params.coreId}%')`
+  
   db.query(query, (error, results) =>{
-    if(!results[0]){
+    console.log(error)
+    if(!results){
       res.status(404).send({Error: `Product not found. Check product ID or name and try again.`})
       return
     }
@@ -34,7 +38,7 @@ app.get('/:coreId', (req, res) => {
 });
 
 app.get('/prod/:name', (req, res) => {
-  
+
 })
 
 app.put('/prod/:quantity', (req, res)=>{
