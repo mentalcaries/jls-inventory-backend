@@ -8,11 +8,11 @@ const { response } = require('express');
 const app = express();
 app.use(cors());
 app.use(express.json())
-const {PORT = 3000, DB_HOST, DB_PASSWORD, DB_NAME} = process.env;
+const {PORT = 3000, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 
 const db = mysql.createPool({
   host:  DB_HOST,
-  user: process.env.DB_USER,
+  user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
 });
@@ -28,7 +28,6 @@ app.get('/:coreId', (req, res) => {
   const query = `SELECT Core_Number, Internal_Title, Location, Quantity FROM inventory JOIN locations ON inventory.Core_Number = locations.Product_Code WHERE Core_Number LIKE ('%${req.params.coreId}') OR Internal_Title LIKE('${req.params.coreId}%')`
   
   db.query(query, (error, results) =>{
-    console.log(error)
     if(!results){
       res.status(404).send({Error: `${error}, Product not found. Check product ID or name and try again.`})
       return
