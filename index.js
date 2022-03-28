@@ -30,7 +30,7 @@ app.get('/:coreId', (req, res) => {
   db.query(query, (error, results) =>{
     console.log(error)
     if(!results){
-      res.status(404).send({Error: `Product not found. Check product ID or name and try again.`})
+      res.status(404).send({Error: `${error}, Product not found. Check product ID or name and try again.`})
       return
     }
     res.send(results )
