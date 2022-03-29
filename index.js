@@ -12,6 +12,7 @@ app.options('*', cors());
 const PORT = process.env.PORT || 4000;
 
 const prodRouter = require('./routes/products')
+const inventoryRouter = require('./routes/inventory')
 
 
 // get all stats in database, locations, quantities locally and globally
@@ -44,9 +45,9 @@ const prodRouter = require('./routes/products')
 //   })
 // });
 
-app.use('/product', prodRouter)
+app.use('/product', prodRouter);
 
-
+app.use('/inventory', inventoryRouter);
 
 
 app.get('/prod/:name', (req, res) => {
