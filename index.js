@@ -14,7 +14,7 @@ const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 const PORT = process.env.PORT || 3000;
 
 const db = mysql.createPool({
-  host:  'us-cdbr-east-05.cleardb.net',
+  host:  DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
