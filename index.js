@@ -12,7 +12,7 @@ const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 const PORT = process.env.PORT || 3000;
 
 const db = mysql.createPool({
-  host:  DB_HOST,
+  host:  'us-cdbr-east-05.cleardb.net',
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
@@ -26,6 +26,7 @@ const db = mysql.createPool({
 
 app.get('/:coreId', (req, res) => {
 
+  
   const query = `SELECT Core_Number, Internal_Title, Location, Quantity FROM inventory JOIN locations ON inventory.Core_Number = locations.Product_Code WHERE Core_Number LIKE ('%${req.params.coreId}') OR Internal_Title LIKE('${req.params.coreId}%')`
   
   db.query(query, (error, results) =>{
