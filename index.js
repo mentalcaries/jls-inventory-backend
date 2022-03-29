@@ -26,7 +26,7 @@ const db = mysql.createPool({
 // view locations and update quantities
 
 app.get('/', (req, res) => {
-  db.query('SELECT * FROM sample', (error, results) =>{
+  db.query(`SELECT * FROM inventory WHERE Core LIKE ('%204')`, (error, results) =>{
     if(!results){
       res.status(404).send({Error: `${error}`})
       return
