@@ -46,14 +46,11 @@ const prodRouter = require('./routes/products')
 
 app.use('/product', prodRouter)
 
-app.get('/:coreId', (req, res) => {
-
-});
 
 
 
 app.get('/prod/:name', (req, res) => {
-
+  
 })
 
 app.put('/prod/:quantity', (req, res)=>{
@@ -63,3 +60,5 @@ app.put('/prod/:quantity', (req, res)=>{
 app.listen(PORT, () => {
   console.log(`Running on ${PORT}`);
 });
+// app.get('/:coreId', (req, res) => {
+// });
