@@ -21,10 +21,11 @@ const selectProduct = (req, res) => {
 const updateQuantity = (req, res) => {
   const { core, location, adjustBy} = req.body;
 
-  db.query(`UPDATE locations SET Quantity = Quantity + ${adjustBy} WHERE Core = ${core} AND Location = ${location}`, (error, results) => {
+  db.query(`UPDATE locations SET Quantity = Quantity + ${adjustBy} WHERE Product_Code = '${core}' AND Location = '${location}'`, (error, results) => {
     if(!adjustBy || !core || !location){
       throw new BadRequest('Invalid data')
     }
+    if(results)
     res.send(results)
   })
 
