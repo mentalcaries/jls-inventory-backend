@@ -8,6 +8,8 @@ const { response } = require('express');
 const app = express();
 app.use(cors());
 app.use(express.json())
+app.options('*', cors());
+
 const {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env;
 const PORT = process.env.PORT || 3000;
 
