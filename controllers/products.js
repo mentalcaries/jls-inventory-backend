@@ -17,4 +17,22 @@ const getProduct = (req, res) => {
   });
 };
 
-module.exports = {getProduct};
+const getFullStats = (req, res) => {
+
+  const query = `SELECT * FROM inventory JOIN locations ON inventory.Core = locations.Product_Code WHERE Core ='${req.params.coreId}'`;
+
+  db.query(query, (error, results) => {
+    if (!results[0]) {
+      res
+        .status(400)
+        .send({
+          Error: `Product may not be stocked`,
+        });
+      return;
+    }
+    res.send(results);
+  });
+
+}
+
+module.exports = {getProduct, getFullStats};
