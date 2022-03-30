@@ -1,1 +1,2 @@
-JLS Trading
+# JLS Trading Take Home Challenge
+

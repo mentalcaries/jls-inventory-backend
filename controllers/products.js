@@ -2,7 +2,7 @@ const db = require('../database/db')
 
 const getProduct = (req, res) => {
 
-  const query = `SELECT * FROM inventory JOIN locations ON inventory.Core = locations.Product_Code WHERE Core LIKE ('%${req.params.coreId}') OR Title LIKE('${req.params.coreId}%')`;
+  const query = `SELECT Core, Title FROM inventory WHERE Core LIKE ('%${req.params.coreId}') OR Title LIKE('${req.params.coreId}%')`;
 
   db.query(query, (error, results) => {
     if (!results[0]) {
