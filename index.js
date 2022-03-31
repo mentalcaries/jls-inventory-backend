@@ -26,7 +26,7 @@ const inventoryRouter = require('./routes/inventory')
 
 app.use('/product', prodRouter);
 
-app.use('/inventory', inventoryRouter);
+app.use('/inventory', cors(), inventoryRouter);
 
 
 app.listen(PORT, () => {
