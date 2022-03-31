@@ -4,17 +4,15 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-
 app.use(cors());
 app.use(express.json())
-
+app.options('*', cors());
 
 
 const PORT = process.env.PORT || 4000;
 
 const prodRouter = require('./routes/products')
-const inventoryRouter = require('./routes/inventory');
-const { options } = require('./routes/inventory');
+const inventoryRouter = require('./routes/inventory')
 
 
 // get all stats in database, locations, quantities locally and globally
