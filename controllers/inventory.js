@@ -25,10 +25,10 @@ const updateQuantity = (req, res) => {
     if(!quantity || !core || !location){
       throw new BadRequest('Invalid data')
     }
-    // if(results.changedRows < 1){
-    //   res.status(500).send({Message: 'Something went wrong'})
-    //   return
-    // }
+    if(results.changedRows < 1){
+      res.status(500).send({Message: 'Something went wrong'})
+      return
+    }
       res.send(results)
   })
 
