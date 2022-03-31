@@ -1,5 +1,4 @@
 const db = require('../database/db');
-const { BadRequest } = require('../errors/bad-request');
 
 const selectProduct = (req, res) => {
 
@@ -23,7 +22,8 @@ const updateQuantity = (req, res) => {
 
   db.query(`UPDATE locations SET Quantity = Quantity + ${quantity} WHERE Product_Code = '${core}' AND Location = '${location}'`, (error, results) => {
     if(!quantity || !core || !location){
-      throw new BadRequest('Invalid data')
+      res.status(400).send({Message: 'Invalid request'})
+      return
     }
     if(error || results.changedRows < 1){
       res.status(500).send({Message: 'Something went wrong'})
