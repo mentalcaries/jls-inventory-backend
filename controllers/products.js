@@ -19,7 +19,7 @@ const getProduct = (req, res) => {
 
 const getFullStats = (req, res) => {
 
-  const query = `SELECT * FROM inventory JOIN locations ON inventory.Core = locations.Product_Code WHERE Core ='${req.params.coreId}'`;
+  const query = `SELECT * FROM inventory LEFT OUTER JOIN locations ON inventory.Core = locations.Product_Code WHERE Core ='${req.params.coreId}'`;
 
   db.query(query, (error, results) => {
     if (!results[0]) {
