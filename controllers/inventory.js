@@ -3,7 +3,7 @@ const { BadRequest } = require('../errors/bad-request');
 
 const selectProduct = (req, res) => {
 
-  const query = `SELECT Core, Title, Warehouse, Location, Quantity FROM inventory JOIN locations ON inventory.Core = locations.Product_Code WHERE Core LIKE ('%${req.params.prod}') OR Title LIKE('${req.params.prod}%')`;
+  const query = `SELECT Core, Title, Warehouse, Location, Quantity FROM inventory JOIN locations ON inventory.Core = locations.Product_Code WHERE Core ='${req.params.prod}'`;
 
   db.query(query, (error, results) => {
     if (!results[0]) {
@@ -19,10 +19,10 @@ const selectProduct = (req, res) => {
 };
 
 const updateQuantity = (req, res) => {
-  const { core, location, adjustBy} = req.body;
+  const { core, location, quantity} = req.body;
 
-  db.query(`UPDATE locations SET Quantity = Quantity + ${adjustBy} WHERE Product_Code = '${core}' AND Location = '${location}'`, (error, results) => {
-    if(!adjustBy || !core || !location){
+  db.query(`UPDATE locations SET Quantity = Quantity + ${quantity} WHERE Product_Code = '${core}' AND Location = '${location}'`, (error, results) => {
+    if(!quantity || !core || !location){
       throw new BadRequest('Invalid data')
     }
     if(results.changedRows < 1){
