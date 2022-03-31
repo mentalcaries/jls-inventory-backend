@@ -5,14 +5,14 @@ const cors = require('cors');
 
 const app = express();
 
-var options = {
+var corsOptions = {
   "origin": "*",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }
 
-app.use(cors(options));
+app.use(cors(corsOptions));
 app.use(express.json())
 
 
