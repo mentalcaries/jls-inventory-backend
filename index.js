@@ -4,15 +4,25 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+var options = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
+
+app.use(cors(options));
 app.use(express.json())
 app.options('*', cors());
+
 
 
 const PORT = process.env.PORT || 4000;
 
 const prodRouter = require('./routes/products')
-const inventoryRouter = require('./routes/inventory')
+const inventoryRouter = require('./routes/inventory');
+const { options } = require('./routes/inventory');
 
 
 // get all stats in database, locations, quantities locally and globally
