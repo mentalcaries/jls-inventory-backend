@@ -14,7 +14,6 @@ var options = {
 
 app.use(cors(options));
 app.use(express.json())
-app.options('*', cors());
 
 
 
