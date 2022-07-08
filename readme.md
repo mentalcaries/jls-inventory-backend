@@ -1,4 +1,4 @@
-# JLS Trading Take Home Challenge
+# Warehousing Inventory Tracker
 
 This backend comprises a Node/Express JS server that accesses a MySQL database hosted on ClearDB via Heroku.
 It was converted from two CSV files and features tables consisting of 
